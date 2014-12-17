@@ -850,7 +850,7 @@ class Scenario(TagAndStatusStatement, Replayable):
         for step in self.all_steps:
             if run_steps:
                 if not step.run(runner):
-                    run_steps = False
+                    run_steps = not runner.config.stop
                     failed = True
                     runner.context._set_root_attribute('failed', True)
                     self._cached_status = 'failed'
